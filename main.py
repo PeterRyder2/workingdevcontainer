@@ -62,5 +62,11 @@ def generate_random_items(db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Thousand random items added to the database"}
 
+@app.post("/count_itens/")
+def count_items(db: Session = Depends(get_db)):
+    items = db.query(models.Item).all()
+    return {'length:':len(items)}
+
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

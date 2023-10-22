@@ -24,6 +24,10 @@ services:
       - mysql_data:/var/lib/mysql  # Named volume for MySQL data
     networks:
       - mynetwork  # Assign the app service to the mynetwork network
+
+volumes:
+  mysql_data:  # Define the named volume here
+
 networks:
   mynetwork:
 
