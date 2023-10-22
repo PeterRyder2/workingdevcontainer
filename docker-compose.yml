@@ -12,14 +12,16 @@ services:
       - .env  # Specify the .env file
     networks:
       - mynetwork  # Assign the app service to the mynetwork network
+    command: ["dockerize", "-wait", "tcp://db:3306", "-timeout", "60s", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
   db:
     image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: examplepassword
-      MYSQL_DATABASE: fastapi_db
     ports:
       - "3306:3306"
+    env_file:
+      - .env  # Specify the path to your .env file
+    volumes:
+      - mysql_data:/var/lib/mysql  # Named volume for MySQL data
     networks:
       - mynetwork  # Assign the app service to the mynetwork network
 networks:
