@@ -5,7 +5,8 @@ import os
 
 
 db_password = os.environ.get("MYSQL_ROOT_PASSWORD")
-SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:{db_password}@db/fastapi_db"
+db_nanme = os.environ.get("MYSQL_DB_NAME")
+SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:{db_password}@db/{db_nanme}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
