@@ -15,4 +15,12 @@ this has a mysql db container and app contanier
 ### ALembic database migrations
     for mysql migrations you can use alembic
     tutorial here https://simplyprashant.medium.com/how-to-use-alembic-for-your-database-migrations-d3e93cacf9e8
-    
+
+
+#### Helpful mysql tips
+- bash into mysql container
+-   mysql -uroot -p 
+- show databases;
+- ensure the database is there
+- use db_name;
+- show tables; 
