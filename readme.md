@@ -17,6 +17,14 @@ this has a mysql db container and app contanier
     tutorial here https://simplyprashant.medium.com/how-to-use-alembic-for-your-database-migrations-d3e93cacf9e8
    
 
+    - make sure env.py is setup correctly and the env.py
+    '''
+    db_password = os.environ.get("MYSQL_ROOT_PASSWORD")
+    db_nanme = os.environ.get("MYSQL_DB_NAME")
+    SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:{db_password}@db/{db_nanme}"
+    config.set_main_option("sqlalchemy.url", SQLALCHEMY_DATABASE_URL)
+    '''
+
 
 
 #### Helpful mysql tips
