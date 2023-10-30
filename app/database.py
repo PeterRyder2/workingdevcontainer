@@ -8,7 +8,7 @@ import os
 
 db_password = os.environ.get("MYSQL_ROOT_PASSWORD")
 db_nanme = os.environ.get("MYSQL_DB_NAME")
-SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:{db_password}@db/bleeper"
+SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:{db_password}@db/{db_nanme}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 if not database_exists(engine.url):
     create_database(engine.url)

@@ -15,6 +15,8 @@ this has a mysql db container and app contanier
 ### ALembic database migrations
     for mysql migrations you can use alembic
     tutorial here https://simplyprashant.medium.com/how-to-use-alembic-for-your-database-migrations-d3e93cacf9e8
+   
+
 
 
 #### Helpful mysql tips
@@ -23,4 +25,5 @@ this has a mysql db container and app contanier
 - show databases;
 - ensure the database is there
 - use db_name;
-- show tables; 
+- show tables; # shows the tables within the DB
+- DESCRIBE TableName # shows the schema structure of a particular table
