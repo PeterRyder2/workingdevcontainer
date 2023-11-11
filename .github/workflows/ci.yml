@@ -20,6 +20,4 @@ jobs:
         with:
           context: .Dockerfile
           push: true
-          tags: peterryder3
-/
-actionstest:prod
+          tags: peterryder3/actionstest:prod
