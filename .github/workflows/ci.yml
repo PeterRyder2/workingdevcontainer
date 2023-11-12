@@ -1,7 +1,37 @@
 name: Build and Push Docker image to Docker Hub
 
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: actionstest
+
 on: push
 jobs:
+  say_hello:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: say hello
+        run: echo "Hello POOPOPOOPOPOPOPPOOPOPOPOP"
+
+  # push_to_hub:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Login to Docker Hub
+  #       uses: docker/login-action@v3
+  #       with:
+  #         username: peterryder3
+  #         password: dckr_pat_nTx5HTti5e0daN7dDKaBqMqEajc
+  #         # username: ${{ secrets.DOCKERHUB_USER }}
+  #         # password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: say hello
+  #       run: "echo Current Working Directory: $PWD"
+
+  #     - name: Build and push Docker image
+  #       uses: docker/build-push-action@v4
+  #       with:
+  #         context: ${{github.workspace}}/Dockerfile
+  #         push: true
+  #         tags: peterryder3/actionstest:prod
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
@@ -9,15 +39,34 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-    
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+          username: peterryder3
+          password: dckr_pat_nTx5HTti5e0daN7dDKaBqMqEajc
+          # username: ${{ secrets.DOCKER_USERNAME }}
+          # password: ${{ secrets.DOCKER_PASSWORD }}
+  
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
         with:
-          context: ./Dockerfile
-          push: true
-          tags: peterryder3/actionstest:prod
+          username: peterryder3
+          password: dckr_pat_nTx5HTti5e0daN7dDKaBqMqEajc
+          repository: peterryder3/actionstest
+          tags: latest, ${{ github.run_number }}
+      # - name: Docker meta
+      #   id: meta
+      #   uses: docker/metadata-action@v3
+      #   with:
+      #     username: peterryder3
+      #     password: dckr_pat_nTx5HTti5e0daN7dDKaBqMqEajc
+      #     images: name/app
+      # - name: Build and push Docker image
+      #   uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile
+      #     push: true
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
