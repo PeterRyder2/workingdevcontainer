@@ -46,5 +46,5 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: peterryder3/actionstest
-          tags: latest, ${{ github.run_number }}
+          tags: latest
  
