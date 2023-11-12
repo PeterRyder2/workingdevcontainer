@@ -42,15 +42,15 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
   
 
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
-          username: peterryder3
-          password: dckr_pat_nTx5HTti5e0daN7dDKaBqMqEajc
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: peterryder3/actionstest
           tags: latest, ${{ github.run_number }}
       # - name: Docker meta
